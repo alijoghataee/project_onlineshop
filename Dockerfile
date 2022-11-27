@@ -8,4 +8,4 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
-COPY Django_Docker_with_PostgreSql /code/
+COPY . /code/
