@@ -1,13 +1,11 @@
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>sign up</title>
-</head>
-<body>
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}sign up{% endblock title %}
+
+{% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit">sign up</button>
 </form>
-</body>
-</html>
+{% endblock content %}
