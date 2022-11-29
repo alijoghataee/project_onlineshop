@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -7,6 +6,15 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
+<nav>{% if user.is_authenticated %}
+    <h5>welcome {{ user.username }}
+    <span> | </span>
+{#    <a href="{% url 'logout' %}">log out</a></h5>#}
+{% else %}
+{#    <a href="{% url 'login' %}">log in</a>#}
+    <span> | </span>
+{#    <a href="{% url 'signup' %}">sign up</a>#}
+{% endif %} </nav>
 {% block content %}
 {% endblock content %}
 
