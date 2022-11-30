@@ -9,11 +9,11 @@
 <nav>{% if user.is_authenticated %}
     <h5>welcome {{ user.username }}
     <span> | </span>
-{#    <a href="{% url 'logout' %}">log out</a></h5>#}
+    <a href="{% url 'account_logout' %}">log out</a></h5>
 {% else %}
-{#    <a href="{% url 'login' %}">log in</a>#}
+    <a href="{% url 'account_login' %}">log in</a>
     <span> | </span>
-{#    <a href="{% url 'signup' %}">sign up</a>#}
+    <a href="{% url 'account_signup' %}">sign up</a>
 {% endif %} </nav>
 {% block content %}
 {% endblock content %}
