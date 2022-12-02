@@ -5,7 +5,7 @@
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
     <br>
     <button type="submit">are you sure?</button>
 </form>
