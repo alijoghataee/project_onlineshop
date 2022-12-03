@@ -7,9 +7,9 @@
 </head>
 <body>
 <nav>{% if user.is_authenticated %}
-    <h5>welcome {{ user.username }}
-    <span> | </span>
-    <a href="{% url 'account_logout' %}">log out</a></h5>
+    <h5>welcome {{ user.email|truncatechars:5 }}
+        <span> | </span>
+        <a href="{% url 'account_logout' %}">log out</a></h5>
 {% else %}
     <a href="{% url 'account_login' %}">log in</a>
     <span> | </span>
