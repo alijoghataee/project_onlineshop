@@ -3,12 +3,20 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 
+class Grouping(models.Model):
+    group = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.group
+
+
 class Product(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
     price = models.PositiveIntegerField(default=0)
     status = models.BooleanField(default=False)
     cover = models.ImageField(upload_to='product_cover/')
+    group = models.ManyToManyField(Grouping, related_name='order')
 
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
@@ -38,3 +46,5 @@ class Comment(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
 
     active = models.BooleanField(default=False)
+
+

@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}detail product {{ product.title }}{% endblock title %}
-
+{% load i18n %}
 {% block content %}
 
     <div class="wrapper">
@@ -47,15 +47,14 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
-                                        اضافه به سبد خرید
+                                        {% trans 'add to cart' %}
                                     </button>
                                 </div>
                                 <div class="product-footer-meta mt-5 pt-5">
                                     <p><span class="m-0">دسته بندی ها:</span>
-                                        <a href="shop.html">لباس</a>,
-                                        <a href="shop.html">تابستانی</a>,
-                                        <a href="shop.html">گرم</a>,
-                                        <a href="shop.html">زنانه</a>
+                                        {% for order in order %}
+                                        {{ order }}
+                                        {% endfor %}
                                     </p>
                                 </div>
                             </div>
@@ -66,7 +65,7 @@
                             <div class="product-data-tab tab-style-3">
                                 <div class="nav nav-tabs product-data-tab__head" id="product-tab" role="tablist">
                                     <a class="m-0 product-data-tab__link nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-selected="true">
-                                        <span>توضیحات محصول</span>
+                                        <span>{% trans 'product description' %}</span>
                                     </a>
                                     <a class="m-0 product-data-tab__link nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-selected="true">
                                         <span>ویژگی ها</span>
@@ -144,12 +143,12 @@
                                                 <div class="row">
                                                     <div class="border-top py-5 w-100"></div>
                                                     <div class="col-lg-8 m-auto">
-                                                        <span class="reply-title pull-right">نظر خود را بنویسید</span>
+                                                        <span class="reply-title pull-right">{% trans 'write your comment' %}</span>
                                                         <br>
                                                         <form action="" method="post">
                                                             {% csrf_token %}
                                                             {{ comment_form|crispy }}
-                                                            <input type="submit" value="ارسال">
+                                                            <input type="submit" value="{% trans 'submit' %}">
                                                         </form>
 
                                                     </div>

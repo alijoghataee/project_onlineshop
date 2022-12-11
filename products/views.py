@@ -1,8 +1,9 @@
 from django.urls import reverse
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required
 
-from .models import Product, Comment
+from .models import Product, Comment, Grouping
 from .forms import CommentForm
 
 
@@ -12,11 +13,12 @@ class ProductListView(generic.ListView):
     context_object_name = 'product'
 
 
+@login_required
 def product_detail_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
     comment = product.comments.filter(active=True)
-
-    if request == 'POST':
+    group = product.group.all()
+    if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
@@ -30,6 +32,7 @@ def product_detail_view(request, pk):
         'product': product,
         'comment': comment,
         'comment_form': comment_form,
+        'order': group
     })
 
 # class ProductDetailView(generic.DetailView):
