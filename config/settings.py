@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os.path
 from pathlib import Path
 from environs import Env
+from django.contrib.messages import constants as messages  # for messages
 
 # for enviroment variables
 env = Env()
@@ -125,11 +126,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-# LANGUAGE_CODE = 'fa'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
-TIME_ZONE = 'UTC'
-# TIME_ZONE = 'Asia/Tehran'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 USE_L10N = True
@@ -168,3 +169,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
+
+# for messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}

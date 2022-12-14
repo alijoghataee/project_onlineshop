@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -57,7 +57,7 @@
                                 </li>
                                 <li class="mainmenu__item menu-item-has-children">
                                     <a href="#" class="mainmenu__link">
-                                        <span class="mm-text">صفحات</span>
+                                        <span class="mm-text">{% trans 'categories' %}</span>
                                     </a>
                                 </li>
                                 <li class="mainmenu__item">
@@ -118,6 +118,20 @@
     </div>
 </header>
 <!-- Header End -->
+
+{% if messages %}
+    <div>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    </div>
+{#<ul class="messages">#}
+{#    {% for message in messages %}#}
+{#    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{% endif %}
+
 {% block content %}
 
 {% endblock content %}

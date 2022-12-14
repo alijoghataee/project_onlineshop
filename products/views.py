@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.urls import reverse
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
@@ -9,6 +10,7 @@ from .forms import CommentForm
 
 class ProductListView(generic.ListView):
     queryset = Product.objects.filter(status=True)
+    paginate_by = 10
     template_name = 'product/list_view.html'
     context_object_name = 'product'
 
@@ -25,6 +27,7 @@ def product_detail_view(request, pk):
             new_comment.product = product
             new_comment.author = request.user
             new_comment.save()
+            messages.success(request, 'your comment success send')
             comment_form = CommentForm()
     else:
         comment_form = CommentForm()
@@ -34,6 +37,7 @@ def product_detail_view(request, pk):
         'comment_form': comment_form,
         'order': group
     })
+
 
 # class ProductDetailView(generic.DetailView):
 #     model = Product
