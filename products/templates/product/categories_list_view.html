@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+
+{% block title %}Categories{% endblock title %}
+
+{% block content %}
+    {% for category in categories %}
+        <h2><a href="{% url 'categories_product' category.pk %}">|{{ category.group }}|</a></h2>
+        <br>
+    {% endfor %}
+{% endblock content %}
