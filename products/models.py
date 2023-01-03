@@ -17,7 +17,7 @@ class Product(models.Model):
     status = models.BooleanField(default=False)
     cover = models.ImageField(upload_to='product_cover/')
     group = models.ManyToManyField(Grouping, related_name='order')
-    like = models.BooleanField(default=True)
+
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
 
@@ -26,6 +26,11 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.pk])
+
+
+class LikeManage(models.Model):
+    product = models.ForeignKey(Product, related_name='like', on_delete=models.CASCADE, null=True)
+    like = models.BooleanField(default=False)
 
 
 class Comment(models.Model):

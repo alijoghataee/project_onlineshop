@@ -39,6 +39,17 @@ def product_detail_view(request, pk):
     })
 
 
+class CategoriesListView(generic.ListView):
+    model = Grouping
+    template_name = 'product/categories_list_view.html'
+    context_object_name = 'categories'
+
+
+def list_product_by_category(request, pk):
+    products = Product.objects.filter(group__in=[pk])
+
+    return render(request, 'product/categories_product.html', context={'products': products, })
+
 # class ProductDetailView(generic.DetailView):
 #     model = Product
 #     template_name = 'product/detail_view.html'

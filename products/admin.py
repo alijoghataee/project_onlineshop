@@ -11,7 +11,7 @@ class CommentInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'datetime_created', )
+    list_display = ('title', 'status', 'datetime_created',)
     ordering = ('-datetime_modified', )
 
     inlines = [
