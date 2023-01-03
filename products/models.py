@@ -17,7 +17,7 @@ class Product(models.Model):
     status = models.BooleanField(default=False)
     cover = models.ImageField(upload_to='product_cover/')
     group = models.ManyToManyField(Grouping, related_name='order')
-
+    like = models.BooleanField(default=True)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
 
