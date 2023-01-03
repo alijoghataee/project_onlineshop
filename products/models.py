@@ -28,11 +28,6 @@ class Product(models.Model):
         return reverse('product_detail', args=[self.pk])
 
 
-class LikeManage(models.Model):
-    product = models.ForeignKey(Product, related_name='like', on_delete=models.CASCADE, null=True)
-    like = models.BooleanField(default=False)
-
-
 class Comment(models.Model):
     STAR = [
         ('1', 'very bad'),
