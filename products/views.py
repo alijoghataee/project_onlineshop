@@ -45,12 +45,10 @@ class CategoriesListView(generic.ListView):
     context_object_name = 'categories'
 
 
-class CategoryProduct(generic.ListView):
-    template_name = 'product/categories_product.html'
-    context_object_name = 'categories'
+def list_product_by_category(request, pk):
+    products = Product.objects.filter(pk=pk)
 
-    def get_queryset(self):
-        return Product.objects.filter(group=reverse('categories_product'))
+    return render(request, 'product/categories_product.html', context={'products': products, })
 
 # class ProductDetailView(generic.DetailView):
 #     model = Product
