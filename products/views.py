@@ -46,7 +46,7 @@ class CategoriesListView(generic.ListView):
 
 
 def list_product_by_category(request, pk):
-    products = Product.objects.filter(pk=pk)
+    products = Product.objects.filter(group__in=[pk])
 
     return render(request, 'product/categories_product.html', context={'products': products, })
 
